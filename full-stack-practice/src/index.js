@@ -3,6 +3,10 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDb from "./dbConnect/index.js";
 
+
+//import all user routes
+import userRoutes from "./routes/user.route.js";
+
 dotenv.config({
     path:"./.env"
 })
@@ -24,17 +28,8 @@ app.use(
 
 const PORT = process.env.PORT || 5002
 
-app.get("/", (req, res)=> {
-    res.send("Hello World")
-})
+app.use("/api/v1/user", userRoutes)
 
-app.get("/hitesh", (req, res)=> {
-    res.send("Hello Hitesh")
-})
-
-app.get("/piyush", (req, res)=> {
-    res.send("Hello Piyush")
-})
 
 connectDb()
         .then(()=> {
